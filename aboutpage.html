@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    /* body style, bake it venter and also include a Linear- Gradient that changes around for the background  */
+    body {
+      
+        
+      
+      background: linear-gradient(-45deg, #ffffff, #cccccc, #808080, #757575);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        height: 100vh;
+    }
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .svg1 {
+        display: block;
+        margin-left:auto;
+        margin-right: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+       
+    }
+
+    .icon {
+
+       float: left;
+       height: 100px;
+       width: 100px;
+       border-radius: 50%;
+       
+
+
+    
+    }
+     
+   
+    .centericon {
+
+      display: block;
+      margin-left:auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+     
+    
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+     
+     
+  }
+       
+    
+
+    .center {
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    /* icon style for the top of website, home, about, contact, projects... */
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+        position: relative;
+        top:0;
+        width: 100%;
+      
+      
+      }
+      
+      li {
+        float: left;
+     
+        
+      }
+      
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        
+      }
+      
+      li a:hover {
+        background-color: #111;
+      }
+
+     
+      
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>Ibrahim Kedir's Website</title>
+
+    
+</head>
+
+<body>
+    <!-- Add icon library -->
+
+    <ul>
+      <li><a onClick="location.href='templateMainPage.html'"><i class="fa-solid fa-house-chimney"></i> Home</a></li>
+      <li><a onClick="location.href='newspage.html'"><i class="fa-solid fa-newspaper"></i> News</a></li>
+      <li><a  onClick="location.href='contactpage.html'"><i class="fa-solid fa-paper-plane"></i> Contact</a></li>
+      <li><a  onClick="location.href='aboutpage.html'"><i class="fa-solid fa-user"></i> About</a></li>
+      </ul>
+ 
+
+
+<div>
+      <div> 
+        <h1 class="center" style="font:bolder; font-size:xxx-large; font-family:serif; background-color:#c26f6f"><i class="fa-solid fa-user"></i><br>About Me </h1>
+      </div>
+        <br>
+      <div> 
+     
+          <img src="personal.png" class="centericon" alt="intro">
+          <h1 class="center">Intro</h1> 
+        
+          <br>
+        <p class="center">Hello, I am an international student athlet attending La Salle Univeristy in Philadelphia USA.<br>
+            I was born in Ethiopia in May 2000, moved to Canada in April 2006, I currently reside in the USA as a student.<br>
+            I am apart of the La Salle Men's Track & Field and Cross Country team and also a memeber of World Canadian Athletics. <br>
+            I enjoy codding and creating websites in my spear time. 
+         </p>
+      </div>
+      <br>
+      <br>
+      <div> 
+     
+        <img src="lasallelogo2.png" class="centericon" alt="education"> 
+        <h1 class="center">Education</h1> 
+        <br>
+       
+       <p class="center"> La Salle University, Philadelphia PA <br>
+            • Bachelor of Arts [Expected Graduation: May 2022]<br>
+            • Major: Computer Science<br>
+            • Minor(s): Information Technology, Marketing, Business Administration<br>
+            • Scholarships: Founder's Academic Scholarship & La Salle Athletic Scholarship<br>
+          </p>
+    </div>
+    <br>
+    <br>
+    <div> 
+     
+        <img src="skills.png" class="centericon" alt="skills"> 
+        <h1 class="center">Skills</h1> 
+      
+        <br>
+      <p class="center">Software:<br>
+        • JavaScript, Java, C, C++, HTML, SQL (Database & Client Server), VMware, Android Studio, Unity,<br>
+        Wireshark, local Command, Ubuntu, windows server <br>
+        Cources Taken:<br>
+        • Software Engineering, Artificial Intelligence, Data Communication & Data Structure, Programming <br>
+        Concepts & GUIs, Database Mgt Systems, Object Programming, .NET Programming, Language Theory <br>
+        and Design/ Theory of Algorithms, Client Support Systems, Cloud Computing <br>
+        Projects <br>
+        • Website development: personal website where users can learn more about me and my intrests<br>
+        • Game development: creating an online 2-player 2D action game (group capstone project)<br>
+       </p>
+    </div>
+
+    <br>
+    <br>
+    <div> 
+     
+        <img src="athletics.jpg" class="centericon" alt="athletics"> 
+        <h1 class="center">Athletics</h1> 
+        <br>
+      <p class="center">
+        Dedicate 20+ hours a week towards training and competition <br>
+        Men’s NCAA Division 1 Track and Field & Cross-Country Team: <br>
+        • 6* All Academic NCAA conference Award Winner <br>
+        National Team (CANADA) <br>
+        • Canadian 5000m U20 Record Holder (14:17)<br>
+        • 2019-2020 Canadian National Cross-Country Team - 2019 World Cross Country Championships <br>
+        • 2019 NACAC Championships Team Champions (TEAM CANADA) <br>
+       </p>
+    </div>
+    
+</div>
+<br>
+<br>
+<br>
+
+
+
+</body>
+
+</html>
