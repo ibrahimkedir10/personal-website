@@ -1,0 +1,14 @@
+body,
+input {
+   background-color: #ff9999;
+   color: #660000;
+   font-family: Tahoma;
+   font-size: 1.2em;
+   padding: 0.5rem;
+   margin: 0.5rem;
+}
+select{   background-color: #ffffff;
+   color: #660000;
+   font-family: Tahoma;
+   font-size: 1.2em;
+   padding: 1rem;}

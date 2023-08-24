@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>neighbor Table</title>
+        <style type="text/css">
+            td {
+                border: thick solid black;
+                padding: 1rem;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Neighbor Table</h1>
+        <table>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+        <script>
+            cells = document.getElementsByTagName("td");
+            for (let i = 0; i < cells.length; i++) {
+                cells[i].addEventListener("mouseenter", function () {
+                    let me = this;
+                    let myparent = me.parentNode;
+                    //myparent.style.backgroundColor = "green";
+                    me.style.backgroundColor = "red";
+
+                    //same row
+                    let index = Array.from(myparent.children).indexOf(me);
+                    //to the left
+                    if (index > 0) {
+                        myparent.children[index - 1].style.backgroundColor = "blue";
+                    }
+                    //to the right
+                    if (index < myparent.children.length - 1) {
+                        myparent.children[index + 1].style.backgroundColor = "green";
+                    }
+
+                    let myparentsparent = myparent.parentNode;
+                    let parentindex = Array.from(myparentsparent.children).indexOf(myparent);
+
+                    //row above
+                    if (parentindex > 0) {
+                        myparentsparent.children[parentindex - 1].children[index].style.backgroundColor = "yellow";
+                        //to the left in the row above
+                        if (index > 0) {
+                            myparentsparent.children[parentindex - 1].children[index - 1].style.backgroundColor = "magenta";
+                        }
+                        //to the right in the row above
+                        if (index < myparent.children.length - 1) {
+                            myparentsparent.children[parentindex - 1].children[index + 1].style.backgroundColor = "chocolate";
+                        }
+                    }
+
+                    //row below
+                    if (parentindex < myparentsparent.children.length - 1) {
+                        myparentsparent.children[parentindex + 1].children[index].style.backgroundColor = "cyan";
+                        //to the left in the row below
+                        if (index > 0) {
+                            myparentsparent.children[parentindex + 1].children[index - 1].style.backgroundColor = "pink";
+                        }
+                        //to the right in the row below
+                        if (index < myparent.children.length - 1) {
+                            myparentsparent.children[parentindex + 1].children[index + 1].style.backgroundColor = "lime";
+                        }
+                    }
+                });
+            }
+            for (let i = 0; i < cells.length; i++) {
+                cells[i].addEventListener("mouseout", function () {
+                    me = this;
+                    let myparent = me.parentNode;
+                    me.style.backgroundColor = "";
+                    let index = Array.from(myparent.children).indexOf(me);
+                    if (index > 0) {
+                        me.parentNode.children[index - 1].style.backgroundColor = "";
+                    }
+                    if (index < me.parentNode.children.length - 1) {
+                        me.parentNode.children[index + 1].style.backgroundColor = "";
+                    }
+
+                    let myparentsparent = myparent.parentNode;
+                    let parentindex = Array.from(myparentsparent.children).indexOf(myparent);
+
+                    if (parentindex > 0) {
+                        myparentsparent.children[parentindex - 1].children[index].style.backgroundColor = "";
+                        if (index > 0) {
+                            myparentsparent.children[parentindex - 1].children[index - 1].style.backgroundColor = "";
+                        }
+                        if (index < myparent.children.length - 1) {
+                            myparentsparent.children[parentindex - 1].children[index + 1].style.backgroundColor = "";
+                        }
+                    }
+
+                    if (parentindex < myparentsparent.children.length - 1) {
+                        myparentsparent.children[parentindex + 1].children[index].style.backgroundColor = "";
+                        if (index > 0) {
+                            myparentsparent.children[parentindex + 1].children[index - 1].style.backgroundColor = "";
+                        }
+                        if (index < myparent.children.length - 1) {
+                            myparentsparent.children[parentindex + 1].children[index + 1].style.backgroundColor = "";
+                        }
+                    }
+                });
+            }
+        </script>
+    </body>
+
+</html>

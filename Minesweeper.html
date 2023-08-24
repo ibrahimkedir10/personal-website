@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Minesweeper</title>
+		<style type="text/css">
+			td {
+				display: inline-block;
+				width: 50px;
+				height: 50px;
+				border: thin solid black;
+			}
+
+			.hasBomb {
+				background-color: #ffffff;
+			}
+
+			.beenThere {
+				background-color: #ccc;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>Minesweeper</h1>
+		<table>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		<script>
+			cells = document.getElementsByTagName("td");
+			const NUM_BOMBS = 10;
+
+			let bombs = [];
+			for (let i = 0; i < cells.length; i++) {
+				if (i < NUM_BOMBS) {
+					bombs[i] = 1;
+				} else {
+					bombs[i] = 0;
+				}
+			}
+			// shuffle an array https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+			for (let i = 0; i < cells.length; i++) {
+				j = Math.floor(Math.random() * cells.length);
+				let swap = bombs[i];
+				bombs[i] = bombs[j];
+				bombs[j] = swap;
+			}
+
+
+			for (let i = 0; i < cells.length; i++) {
+				if (bombs[i] == 1) {
+					cells[i].classList.add("hasBomb");
+				}
+
+				//*******************************************************************************************************************
+				cells[i].addEventListener("click", function () {
+					me = this;
+					let myparent = me.parentNode;
+					let index = Array.from(myparent.children).indexOf(me);
+					let myparentsparent = myparent.parentNode;
+					let parentindex = Array.from(myparentsparent.children).indexOf(myparent);
+
+					if (me.classList.contains("beenThere")) {
+						return;
+					}
+
+					//alert("click");
+					me.classList.add("beenThere");
+
+					if (me.classList.contains("hasBomb")) {
+						//end game
+						me.innerHTML = "Bomb!!!!!";
+			
+						endgame();
+						
+						return;
+					}
+
+					let bombCount = 0;  //this is the count of neighbors with bombs
+
+					//to the left
+					if (index > 0 && myparent.children[index - 1].classList.contains("hasBomb")) {
+						bombCount++;
+					}
+					//to the right
+					if (index < myparent.children.length - 1 && myparent.children[index + 1].classList.contains("hasBomb")) {
+						bombCount++;
+					}
+
+					//row above
+					if (parentindex > 0) {
+						if (myparentsparent.children[parentindex - 1].children[index].classList.contains("hasBomb")) {
+							bombCount++;
+						}
+						//to the left in the row above
+						if (index > 0 && myparentsparent.children[parentindex - 1].children[index - 1].classList.contains("hasBomb")) {
+							bombCount++;
+						}
+						//to the right in the row above
+						if (index < myparent.children.length - 1 && myparentsparent.children[parentindex - 1].children[index + 1].classList.contains("hasBomb")) {
+							bombCount++;
+						}
+					}
+
+					//row below
+					if (parentindex < myparentsparent.children.length - 1) {
+						if (myparentsparent.children[parentindex + 1].children[index].classList.contains("hasBomb")) {
+							bombCount++;
+						}
+						//to the left in the row below
+						if (index > 0 && myparentsparent.children[parentindex + 1].children[index - 1].classList.contains("hasBomb")) {
+							bombCount++;
+						}
+						//to the right in the row below
+						if (index < myparent.children.length - 1 && myparentsparent.children[parentindex + 1].children[index + 1].classList.contains("hasBomb")) {
+							bombCount++;
+						}
+					}
+					me.innerHTML = bombCount;
+
+					// if my bomb count is zero click all the cell around me (RECURSION!)
+					if (bombCount == 0) {
+						let event = new Event('click');
+
+						if (index > 0) {
+							myparent.children[index - 1].dispatchEvent(event);
+						}
+						//to the right
+						if (index < myparent.children.length - 1) {
+							myparent.children[index + 1].dispatchEvent(event);
+						}
+						//row above
+						if (parentindex > 0) {
+							myparentsparent.children[parentindex - 1].children[index].dispatchEvent(event);
+							//to the left in the row above
+							if (index > 0) {
+								myparentsparent.children[parentindex - 1].children[index - 1].dispatchEvent(event);
+							}
+							//to the right in the row above
+							if (index < myparent.children.length - 1) {
+								myparentsparent.children[parentindex - 1].children[index + 1].dispatchEvent(event);
+							}
+						}
+
+						//row below
+						if (parentindex < myparentsparent.children.length - 1) {
+							myparentsparent.children[parentindex + 1].children[index].dispatchEvent(event);
+							//to the left in the row below
+							if (index > 0) {
+								myparentsparent.children[parentindex + 1].children[index - 1].dispatchEvent(event);
+							}
+							//to the right in the row below
+							if (index < myparent.children.length - 1) {
+								myparentsparent.children[parentindex + 1].children[index + 1].dispatchEvent(event);
+							}
+						}
+
+					}
+
+				});
+			}
+
+			function endgame() {
+				//click all the buttons
+				for (i = 0; i < cells.length; i++) {
+					let event = new Event('click');  // (*)
+					cells[i].dispatchEvent(event);
+				}
+			}
+
+		</script>
+	</body>
+
+</html>

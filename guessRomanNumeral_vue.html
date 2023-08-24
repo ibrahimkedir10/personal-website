@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+
+   <head>
+      <title>Guess a Roman Numeral</title>
+      <!-- The VUE CDN ! Next version 3 -->
+      <!--<script src="https://unpkg.com/vue@next"></script>-->
+      <script src="https://unpkg.com/vue@3"></script>
+      <link rel="stylesheet" href="guess.css">
+   </head>
+
+   <body>
+      <!--   -->
+      <h2>Guess a Roman Numeral</h2>
+      <p>Guess a Roman Numeral between 1 (I) and 100 (C).</p>
+      <div id="guess">
+         <!-- id=guess is conatiner Vue applies to -->
+         <select v-model="userguess">
+            <option v-for="(item, index) in numerals">{{item}}</option>
+         </select>
+         <!--<span>Guess: {{userguess}}</span>-->
+
+         <input v-if="!display" type="button" value="Submit Guess" v-on:click="makeGuess" />
+         <!-- v-on:click="makeGuess"  calls method of Vue object -->
+
+
+         <!-- Displays the list of user's attempted guesses  -->
+         <h2>History of guesses ({{ tries.length }} guesses so far)</h2>
+         <ol>
+            <!-- <li v-for="x in tries">{{x}}</li> -->
+            <li v-for="x in tries">{{x.val}} -- {{x.status}}</li>
+         </ol>
+
+         <!-- image and reset button only display when game over -->
+         <br />
+         <img v-if="display" src="GotIt.jpg" style="height:250px;">
+         <br />
+         <input v-if="display" type="button" value="Reset" v-on:click="startNew" />
+      </div>
+      <script src="guess.js"></script>
+   </body>
+
+</html>
