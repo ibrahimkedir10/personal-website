@@ -1,0 +1,16 @@
+body {
+    background-color: midnightblue;
+    color: navajowhite;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 1rem;
+ }
+ 
+ span {
+    display: inline-block;
+    width: 10rem;
+ }
+ 
+ img {
+    padding-top: 0.5em;
+    padding-bottom: 0.5rem;
+ }
