@@ -1,0 +1,172 @@
+
+  
+
+
+body {
+  height: 100vh;
+   background: linear-gradient(90deg,#e52e71,#ff8a00);
+   text-align: center;
+
+}
+
+.slider-thumb::before {
+  position: absolute;
+  content: "";
+  left: 30%;
+  top: 20%;
+  width: 450px;
+  height: 450px;
+  background: #17141d;
+  border-radius: 62% 47% 82% 35% / 45% 45% 80% 66%;
+  will-change: border-radius, transform, opacity;
+  animation: sliderShape 5s linear infinite;
+  display: block;
+  z-index: -1;
+  -webkit-animation: sliderShape 5s linear infinite;
+}
+@keyframes sliderShape{
+  0%,100%{
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    transform: translate3d(0,0,0) rotateZ(0.01deg);
+  }
+  34%{
+      border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%;
+    transform:  translate3d(0,5px,0) rotateZ(0.01deg);
+  }
+  50%{
+    transform: translate3d(0,0,0) rotateZ(0.01deg);
+  }
+  67%{
+    border-radius: 100% 60% 60% 100% / 100% 100% 60% 60% ;
+    transform: translate3d(0,-3px,0) rotateZ(0.01deg);
+  }
+}
+  /* GAME BOARD STYLES */
+  #gameContainer {
+    /*
+      width and height of .gameBoardPixel should 1/40 of the width and height of #gameContainer,
+      because it is used in calculation in the jscript.js file
+      */
+    width: 40vw;
+    height: 40vw;
+    margin: 2vw auto;
+    background-color: #0c1021;
+    border: solid 10px slategrey;
+    border-radius: 10px;
+  
+    -webkit-box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.6);
+  }
+  
+  .gameBoardPixel {
+    /* background-color: slategrey; */
+    /*
+      width and height of .gameBoardPixel should 1/40 of the width and height of #gameContainer,
+      because it is used in calculation in the jscript.js file
+      */
+    width: 1vw;
+    height: 1vw;
+    border-radius: 10px;
+    float: left;
+  }
+  /* GAME BOARD STYLES END*/
+  
+  /* SNAKE STYLES */
+  .snakeBodyPixel {
+    background-color: #fd6401;
+    box-shadow: 0 0 5px #fd6401;
+  }
+  /* SNAKE STYLES END*/
+  
+  /* FOOD STYLES */
+  .food {
+    background-color: #68e768;
+  }
+  /* FOOD STYLES END*/
+  
+  /* SCORE STYLES */
+  #scoreContainer {
+    width: 40vw;
+    display: flex;
+    margin: auto;
+    justify-content: space-around;
+  }
+  
+  .scoreBoard {
+    border-radius: 10px;
+    border: solid 5px slategrey;
+    color: dimgray;
+    background-color: #0c1021;
+    display: inline-block;
+    padding: 1vw;
+    width: 40%;
+  
+    -webkit-box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.6);
+  }
+  /* SCORE STYLES END */
+  
+  /* Hide #onScreenControllers on desktop */
+  #onScreenControllers {
+    display: none;
+  }
+  
+  .developerDetails {
+    margin-top: 2vw;
+    display: flex;
+    flex-direction: column;
+    color: #0c1021;
+    font-family: monospace;
+  }
+  
+  .developerDetails a {
+    color: #0c1021;
+  }
+  
+  @media only screen and (max-width: 768px) {
+    /* MOBILE */
+    #gameContainer {
+      width: 80vw;
+      height: 80vw;
+    }
+  
+    .gameBoardPixel {
+      width: 2vw;
+      height: 2vw;
+    }
+  
+    #scoreContainer {
+      width: 80vw;
+    }
+  
+    #onScreenControllers {
+      width: 80vw;
+      margin: 5vw auto;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+  
+    #onScreenControllers > div {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    #onScreenControllers button {
+      background-color: transparent;
+      height: 20vw;
+      width: 20vw;
+      font-size: 10vw;
+      border: none;
+    }
+  
+    #onScreenControllers button:focus {
+      outline: none;
+    }
+  
+    #onScreenControllers button:active {
+      background-color: slategray;
+    }
+  }
